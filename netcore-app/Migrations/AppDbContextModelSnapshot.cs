@@ -23,31 +23,37 @@ namespace netcore_app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("主键");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasComment("创建时间");
 
                     b.Property<bool>("Deleted")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasComment("是否删除");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasComment("名称");
 
-                    b.Property<int?>("ParentDepartmentId")
+                    b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Remark")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasComment("备注");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasComment("更新时间");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentDepartmentId");
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Department");
                 });
@@ -56,28 +62,35 @@ namespace netcore_app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("主键");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasComment("创建时间");
 
                     b.Property<bool>("Deleted")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasComment("是否删除");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasComment("名称");
 
                     b.Property<string>("Permission")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasComment("权限");
 
                     b.Property<string>("Remark")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasComment("备注");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasComment("更新时间");
 
                     b.HasKey("Id");
 
@@ -88,52 +101,72 @@ namespace netcore_app.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("主键");
 
                     b.Property<string>("Account")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)")
+                        .HasComment("账号");
 
                     b.Property<string>("Avatar")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(5000)
+                        .HasColumnType("varchar(5000)")
+                        .HasComment("头像");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasComment("创建时间");
 
                     b.Property<bool>("Deleted")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasComment("是否删除");
 
                     b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("部门id");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasComment("邮箱");
 
                     b.Property<string>("Mobile")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)")
+                        .HasComment("手机号");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)")
+                        .HasComment("姓名");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasComment("密码");
 
                     b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("角色id");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasComment("更新时间");
 
                     b.Property<int>("gender")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("性别");
 
                     b.Property<int>("status")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("状态");
 
                     b.HasKey("Id");
 
@@ -147,11 +180,11 @@ namespace netcore_app.Migrations
 
             modelBuilder.Entity("netcore_app.Models.Department", b =>
                 {
-                    b.HasOne("netcore_app.Models.Department", "ParentDepartment")
+                    b.HasOne("netcore_app.Models.Department", "Parent")
                         .WithMany()
-                        .HasForeignKey("ParentDepartmentId");
+                        .HasForeignKey("ParentId");
 
-                    b.Navigation("ParentDepartment");
+                    b.Navigation("Parent");
                 });
 
             modelBuilder.Entity("netcore_app.Models.User", b =>

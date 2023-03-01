@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Debug;
 using Microsoft.Extensions.Logging;
 using netcore_app.Models;
+using System.ComponentModel;
+using System.Reflection.Emit;
 
 namespace netcore_app
 {
@@ -39,7 +41,7 @@ namespace netcore_app
 
                 foreach (var entityType in entityTypes)
                 {
-                    
+
                     if (entityType == null)
                         continue;
 
@@ -49,8 +51,27 @@ namespace netcore_app
                     //  防止重复附加模型，否则会在生成指令中报错
                     if (builder.Model.FindEntityType(entityType) != null)
                         continue;
-                    Console.WriteLine(entityType.Name);
+
                     builder.Model.AddEntityType(entityType);
+                }
+
+                foreach (var entityType in builder.Model.GetEntityTypes())
+                {
+                    if (entityType == null)
+                        continue;
+                    if (entityType.Name == "EntityBase")
+                        continue;
+                    var type = entityType.ClrType;
+                    if (typeof(IEntity).IsAssignableFrom(type))
+                    {
+                        //通过DescriptionAttribute创建字段注释
+                        var descriptionAttrs = type.GetProperties().Where(c => c.IsDefined(typeof(DescriptionAttribute), true));
+                        foreach (var attr in descriptionAttrs)
+                        {
+                            var descriptionAttr = attr.GetCustomAttribute<DescriptionAttribute>();
+                            builder.Entity(type).Property(attr.Name).HasComment(descriptionAttr?.Description);
+                        }
+                    }
                 }
 
                 base.OnModelCreating(builder);
