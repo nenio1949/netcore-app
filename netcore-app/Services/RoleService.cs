@@ -18,10 +18,15 @@ namespace netcore_app.Services
             return await _roleRepository.FindAllAsync();
         }
 
+        public async Task<Role?> InfoAsync(int id)
+        {
+            return await _roleRepository.FindAsync(t => t.Id == id);
+        }
+
         public async Task<int> AddAsync(Role role)
         {
-            return await _roleRepository.AddAsync(role);
-
+            await _roleRepository.AddAsync(role);
+            return role.Id;
         }
 
         public async Task<bool> UpdateAsync(Role role)

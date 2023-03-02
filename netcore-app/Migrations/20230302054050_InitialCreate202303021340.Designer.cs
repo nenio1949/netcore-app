@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using netcore_app;
 
@@ -10,9 +11,11 @@ using netcore_app;
 namespace netcore_app.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230302054050_InitialCreate202303021340")]
+    partial class InitialCreate202303021340
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +33,8 @@ namespace netcore_app.Migrations
                         .HasColumnType("datetime(6)")
                         .HasComment("创建时间");
 
-                    b.Property<ulong>("Deleted")
-                        .HasColumnType("bit")
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)")
                         .HasComment("是否删除");
 
                     b.Property<string>("Name")
@@ -69,8 +72,8 @@ namespace netcore_app.Migrations
                         .HasColumnType("datetime(6)")
                         .HasComment("创建时间");
 
-                    b.Property<ulong>("Deleted")
-                        .HasColumnType("bit")
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)")
                         .HasComment("是否删除");
 
                     b.Property<string>("Name")
@@ -118,8 +121,8 @@ namespace netcore_app.Migrations
                         .HasColumnType("datetime(6)")
                         .HasComment("创建时间");
 
-                    b.Property<ulong>("Deleted")
-                        .HasColumnType("bit")
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)")
                         .HasComment("是否删除");
 
                     b.Property<int>("DepartmentId")

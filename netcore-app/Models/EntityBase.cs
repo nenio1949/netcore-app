@@ -30,7 +30,8 @@ namespace netcore_app.Models
         /// 是否删除
         /// </summary>
         [Description("是否删除")]
-        [DefaultValue(false)]
+        [Column(TypeName = "bit")]
+        [DefaultValue(0)]
         public bool Deleted { get; set; }
     }
 }

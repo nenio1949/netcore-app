@@ -11,8 +11,8 @@ using netcore_app;
 namespace netcore_app.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230301014646_InitialCreate-202303010946")]
-    partial class InitialCreate202303010946
+    [Migration("20230302054256_InitialCreate202303021342")]
+    partial class InitialCreate202303021342
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,15 +39,15 @@ namespace netcore_app.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
                         .HasComment("名称");
 
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Remark")
-                        .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasColumnType("text")
                         .HasComment("备注");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -78,17 +78,16 @@ namespace netcore_app.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
                         .HasComment("名称");
 
                     b.Property<string>("Permission")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasComment("权限");
 
                     b.Property<string>("Remark")
-                        .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasColumnType("text")
                         .HasComment("备注");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -114,7 +113,6 @@ namespace netcore_app.Migrations
                         .HasComment("账号");
 
                     b.Property<string>("Avatar")
-                        .IsRequired()
                         .HasMaxLength(5000)
                         .HasColumnType("varchar(5000)")
                         .HasComment("头像");
@@ -132,7 +130,6 @@ namespace netcore_app.Migrations
                         .HasComment("部门id");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)")
                         .HasComment("邮箱");

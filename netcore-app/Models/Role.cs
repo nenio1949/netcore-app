@@ -21,14 +21,14 @@ namespace netcore_app.Models
         /// </summary>
         [Description("权限")]
         [Column(TypeName = "text")]
-        public string Permission { get; set; } = string.Empty;
+        public string? Permission { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
         [Description("备注")]
         [Column(TypeName = "text")]
-        public string Remark { get; set; } = string.Empty;
+        public string? Remark { get; set; }
     }
 }
 

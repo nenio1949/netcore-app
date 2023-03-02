@@ -6,6 +6,8 @@ namespace netcore_app.IServices
     {
         Task<List<Role>> ListAsync();
 
+        Task<Role?> InfoAsync(int id);
+
         Task<int> AddAsync(Role role);
 
         Task<bool> UpdateAsync(Role role);

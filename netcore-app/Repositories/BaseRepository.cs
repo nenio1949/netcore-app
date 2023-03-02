@@ -16,7 +16,7 @@ namespace netcore_app.Repositories
             _context = dbContext;
         }
 
-        
+
 
         public List<T> GetAll()
         {
@@ -49,7 +49,9 @@ namespace netcore_app.Repositories
         public virtual async Task<int> AddAsync(T t)
         {
             _context.Set<T>().Add(t);
-            return await _context.SaveChangesAsync();
+            var res = await _context.SaveChangesAsync();
+            _context.Entry(t);
+            return res;
         }
 
         public virtual T? Find(Expression<Func<T, bool>> match)

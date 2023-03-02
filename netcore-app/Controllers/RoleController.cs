@@ -7,6 +7,8 @@ using netcore_app.Services;
 using netcore_app.Models;
 using netcore_app.Dto;
 using AutoMapper;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using netcore_app.IServices;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -39,20 +41,19 @@ namespace netcore_app.Controllers
             return await _roleService.AddAsync(role);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<bool> Update(int id, RoleUpdateDto dto)
         {
-            var role = _mapper.Map<Role>(dto);
-            role.Id = id;
+            var role = await _roleService.InfoAsync(id);
             if (role == null)
             {
-                throw new Exception("参数校验失败！");
+                throw new Exception("角色不存在！");
             }
-
+            role = _mapper.Map(dto,role);
             return await _roleService.UpdateAsync(role);
         }
 
-        [HttpDelete]
+        [HttpDelete("{ids}")]
         public async Task<int> Delete(string ids)
         {
             var idsArr = Array.ConvertAll(ids.Split(","), int.Parse);

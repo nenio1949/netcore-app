@@ -31,7 +31,7 @@ namespace netcore_app.Models
         /// </summary>
         [Description("备注")]
         [Column(TypeName = "text")]
-        public string Remark { get; set; } = string.Empty;
+        public string? Remark { get; set; }
     }
 }
 

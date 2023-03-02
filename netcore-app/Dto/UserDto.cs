@@ -38,7 +38,7 @@ namespace netcore_app.Dto
         /// 头像
         /// </summary>
         [MaxLength(5000)]
-        public string Avatar { get; set; } = string.Empty;
+        public string? Avatar { get; set; }
 
         /// <summary>
         /// 部门id
@@ -62,7 +62,7 @@ namespace netcore_app.Dto
         /// 邮箱
         /// </summary>
         [MaxLength(100)]
-        public string Email { get; set; } = string.Empty;
+        public string? Email { get; set; }
 
         /// <summary>
         /// 性别

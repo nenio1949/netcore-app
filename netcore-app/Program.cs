@@ -10,7 +10,10 @@ using netcore_app.IServices;
 using netcore_app.IRepositories;
 using netcore_app.Services;
 using netcore_app.Repositories;
+using netcore_app.Common.Extensions;
 using Scrutor;
+using Microsoft.AspNetCore.Mvc;
+using netcore_app.Common.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +23,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(opt=>
+{
+    opt.UseCentralRoutePrefix(new RouteAttribute("api"));
+    opt.Filters.Add(typeof(ApiResultFilterAttribute)); // 返回内容统一封装
+    opt.Filters.Add(typeof(ApiExceptionsFilter)); // 异常统一处理
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 // swagger注册
