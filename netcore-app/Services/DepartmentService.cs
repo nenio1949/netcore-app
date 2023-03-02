@@ -1,4 +1,5 @@
 ﻿using System;
+using netcore_app.IRepositories;
 using netcore_app.IServices;
 using netcore_app.Models;
 using netcore_app.Repositories;
@@ -7,8 +8,8 @@ namespace netcore_app.Services
 {
     public class DepartmentService : IDepartmentService
     {
-        private readonly DepartmentRepository _departmentRepository;
-        public DepartmentService(DepartmentRepository departmentRepository)
+        private readonly IDepartmentRepository _departmentRepository;
+        public DepartmentService(IDepartmentRepository departmentRepository)
         {
             _departmentRepository = departmentRepository;
         }

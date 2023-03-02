@@ -7,8 +7,8 @@ namespace netcore_app.Services
 {
     public class RoleService : IRoleService
     {
-        private readonly RoleRepository _roleRepository;
-        public RoleService(RoleRepository roleRepository)
+        private readonly IRoleRepository _roleRepository;
+        public RoleService(IRoleRepository roleRepository)
         {
             _roleRepository = roleRepository;
         }

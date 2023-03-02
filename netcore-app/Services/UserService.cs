@@ -1,4 +1,5 @@
 ﻿using System;
+using netcore_app.IRepositories;
 using netcore_app.IServices;
 using netcore_app.Models;
 using netcore_app.Repositories;
@@ -7,8 +8,8 @@ namespace netcore_app.Services
 {
     public class UserService : IUserService
     {
-        private readonly UserRepository _userRepository;
-        public UserService(UserRepository userRepository)
+        private readonly IUserRepository _userRepository;
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }

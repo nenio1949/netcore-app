@@ -12,6 +12,7 @@ namespace netcore_app.Models
         /// 名称
         /// </summary>
         [Description("名称")]
+        [MaxLength(50)]
         [Required]
         public string Name { get; set; } = string.Empty;
 
@@ -26,6 +27,7 @@ namespace netcore_app.Models
         /// 备注
         /// </summary>
         [Description("备注")]
+        [Column(TypeName = "text")]
         public string Remark { get; set; } = string.Empty;
     }
 }
