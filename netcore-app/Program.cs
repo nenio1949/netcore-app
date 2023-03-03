@@ -23,11 +23,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
-builder.Services.AddControllers(opt=>
+builder.Services.AddControllers(opt =>
 {
-    opt.UseCentralRoutePrefix(new RouteAttribute("api"));
-    opt.Filters.Add(typeof(ApiResultFilterAttribute)); // 返回内容统一封装
-    opt.Filters.Add(typeof(ApiExceptionsFilter)); // 异常统一处理
+  opt.UseCentralRoutePrefix(new RouteAttribute("api")); // 自定义路由前缀
+  opt.Filters.Add(typeof(ApiResultFilterAttribute)); // 返回内容统一封装
+  opt.Filters.Add(typeof(ApiExceptionsFilter)); // 异常统一处理
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -63,15 +63,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<AppDbContext>();
-    context.Database.EnsureCreated();
+  var services = scope.ServiceProvider;
+  var context = services.GetRequiredService<AppDbContext>();
+  context.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();
