@@ -5,15 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using netcore_app.Common.AutoMapper;
+using netcore_app.Common;
 using netcore_app.IServices;
 using netcore_app.IRepositories;
 using netcore_app.Services;
 using netcore_app.Repositories;
-using netcore_app.Common.Extensions;
 using Scrutor;
 using Microsoft.AspNetCore.Mvc;
-using netcore_app.Common.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +31,12 @@ builder.Services.AddControllers(opt =>
 builder.Services.AddEndpointsApiExplorer();
 // swagger注册
 builder.Services.AddSwaggerGen();
+
+// 序列化
+builder.Services.AddMvc().AddJsonOptions((options) =>
+{
+  options.JsonSerializerOptions.Converters.Add(new DateTimeJsonConverter()); // 时间格式化
+});
 
 // service及repository批量注册
 //builder.Services.AddScoped<IRoleService, RoleService>();

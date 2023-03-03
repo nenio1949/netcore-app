@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace netcore_app.Common.Extensions
+namespace netcore_app.Common
 {
   public static class ExpressionExtensions
   {

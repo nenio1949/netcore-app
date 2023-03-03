@@ -5,7 +5,7 @@ using netcore_app.IRepositories;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using netcore_app.Models;
 using System.Linq;
-using netcore_app.Common.Extensions;
+using netcore_app.Common;
 
 namespace netcore_app.Repositories
 {

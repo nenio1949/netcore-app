@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using netcore_app.Common.Extensions;
+using netcore_app.Common;
 using netcore_app.Dto;
 using netcore_app.IRepositories;
 using netcore_app.IServices;
@@ -19,7 +19,7 @@ namespace netcore_app.Services
 
     public async Task<PageResult<User>> ListAsync(UserPageDto dto)
     {
-      Expression<Func<User, bool>> where = p => true;
+      var where = ExpressionExtensions.GetTrue<User>();
       where = where.And(p => p.Deleted == false);
       if (!string.IsNullOrEmpty(dto.Name))
       {

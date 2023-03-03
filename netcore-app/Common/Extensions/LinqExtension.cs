@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace netcore_app.Common.Extensions
+namespace netcore_app.Common
 {
   public static class LinqExtension
   {

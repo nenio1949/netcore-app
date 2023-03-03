@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using netcore_app.Common.Extensions;
+using netcore_app.Common;
 using netcore_app.Dto;
 using netcore_app.IRepositories;
 using netcore_app.IServices;
